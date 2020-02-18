@@ -2,6 +2,7 @@ import React from "react";
 import uuid from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 class ListItems extends React.Component {
   constructor(props) {
     super(props);
@@ -49,11 +50,11 @@ class ListItems extends React.Component {
       emailId: this.state.emailId,
       companyName: this.state.companyName
     };
-   // console.log(country);
+    // console.log(country);
     this.setState({
       users: [...this.state.users, user]
     });
-    console.log()
+    console.log();
     //e.reset();
   };
   submitForm = e => {
@@ -138,15 +139,29 @@ class ListItems extends React.Component {
     });
     const cardList = this.state.users.map((user, index) => {
       return (
-        <Card style={{ width: "18rem" }}>
+        <Card bg="info" text="white" style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>{user.companyName}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
+            <Card.Subtitle
+              style={{ backgroundColor: "green" }}
+              className="mb-2 text-muted"
+            >
               {user.fullName}
             </Card.Subtitle>
-            <Card.Text>{user.fullAddress}</Card.Text>
+            <ul bg="info" text="white" class="list-group list-group-flush">
+              <li style={{ backgroundColor: "green" }} class="list-group-item">
+                {user.fullAddress}
+              </li>
+              <li style={{ backgroundColor: "green" }} class="list-group-item">
+                {user.contactNo}
+              </li>
+              <li style={{ backgroundColor: "green" }} class="list-group-item">
+                {user.emailId}
+              </li>
+            </ul>
+            {/* <Card.Text>{user.fullAddress}</Card.Text>
             <Card.Text>{user.contactNo}</Card.Text>
-            <Card.Text>{user.emailId}</Card.Text>
+            <Card.Text>{user.emailId}</Card.Text> */}
             <Card.Link href="#">Edit</Card.Link>
             <Card.Link href="#">View Details</Card.Link>
           </Card.Body>
@@ -223,7 +238,11 @@ class ListItems extends React.Component {
           </thead>
           <tbody> {list} </tbody>
         </table>
-        {cardList}
+
+        <>
+          {cardList}
+          <br />
+        </>
       </div>
     );
   }
