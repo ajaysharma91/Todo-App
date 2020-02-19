@@ -73,7 +73,7 @@ class ListItems extends React.Component {
       currency: ""
     });
 
-    //e.reset();
+    e.target.reset();
   };
 
   inputHandlerfullName = e => {
