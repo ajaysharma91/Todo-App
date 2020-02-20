@@ -80,6 +80,12 @@ class ListItems extends React.Component {
     });
   };
 
+  deleteCard = e => {
+    console.log("delete");
+    const newData = this.state.users.filter((i) => i.id !== e.id);
+    console.log(newData);
+    this.setState({ users: newData });
+  }
   render() {
     const cardList = this.state.users.map((user, index) => {
       return (
@@ -112,6 +118,8 @@ class ListItems extends React.Component {
             <Card.Link href="#">Edit</Card.Link>
             <Card.Link href="#">View Details</Card.Link>
           </Card.Body>
+          <button onClick={() => this.deleteCard(user)}>Delete</button>
+          <button onClick={() => this.editCard(user)}>Edit</button>
         </Card>
       );
     });
