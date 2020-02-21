@@ -2,7 +2,7 @@ import React from "react";
 import uuid from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
-import { FormGroup, FormControl, Fragment, Button } from "react-bootstrap";
+import { FormGroup, FormControl, Fragment, Button, InputGroup, Form } from "react-bootstrap";
 class ListItems extends React.Component {
   constructor(props) {
     super(props);
@@ -129,7 +129,7 @@ class ListItems extends React.Component {
         <div>
           <h1> User Details Form </h1>
         <Card style={{ width: "18rem" }}>
-          <form onSubmit={this.submitUserForm}>
+          <Form onSubmit={this.submitUserForm}>
               <div className="form-group">
                 <FormGroup>
                   <FormControl
@@ -176,11 +176,11 @@ class ListItems extends React.Component {
                   /> </FormGroup>
 
                 <FormGroup>
-                  <Button> Submit </Button>
+                  <Button type="submit"> Submit </Button>
                 </FormGroup>
               </div>
        
-          </form>
+          </Form>
           </Card>
         </div>
         <>
