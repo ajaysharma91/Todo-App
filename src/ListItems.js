@@ -13,7 +13,7 @@ class ListItems extends React.Component {
           fullAddress: "Gwalior",
           contactNo: 9826182195,
           emailId: "ajparashar111@gmail.com",
-          companyName: "HappLabs Software  LLP"
+          companyName: "HappLabs Software  LLP "
         }
       ]
     };
