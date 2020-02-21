@@ -2,6 +2,7 @@ import React from "react";
 import uuid from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
+import { FormGroup, FormControl, Fragment, Button } from "react-bootstrap";
 class ListItems extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ class ListItems extends React.Component {
           fullAddress: "Gwalior",
           contactNo: 9826182195,
           emailId: "ajparashar111@gmail.com",
-          companyName: "HappLabs Software  LLP "
+          companyName: "HappLabs Software  LLP"
         }
       ]
     };
@@ -117,49 +118,65 @@ class ListItems extends React.Component {
 
     return (
       <div className="item">
-        <br></br>
         <div>
           <h1> User Details Form </h1>
+        <Card style={{ width: "18rem" }}>
           <form onSubmit={this.submitUserForm}>
-            <input
-              type="text"
-              placeholder="Enter Full Name"
-              value={this.state.users.fullName}
-              onChange={this.inputHandlerfullName}
-            />
-            <input
-              type="text"
-              placeholder="Enter Address"
-              value={this.state.users.fullAddress}
-              onChange={this.inputHandlerAddress}
-            />
-            <br></br>
-            <input
-              type="text"
-              placeholder="Enter Contact"
-              value={this.state.users.contactNo}
-              onChange={this.inputHandlerContact}
-            />
-            <input
-              type="text"
-              placeholder="Enter Email"
-              value={this.state.users.emailId}
-              onChange={this.inputHandlerEmail}
-            />
-            <br></br>
-            <input
-              type="text"
-              placeholder="Enter CompanyDetails"
-              value={this.state.users.companyName}
-              onChange={this.inputHandlerCompany}
-            />
-            <br></br>
-            <button> Submit </button>
+              <div className="form-group">
+                <FormGroup>
+                  <FormControl
+                    type="text"
+                    className="form-control form-control-md"
+                    placeholder="Enter Full Name"
+                    value={this.state.users.fullName}
+                    onChange={this.inputHandlerfullName}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <FormControl
+                    type="text"
+                    className="form-control form-control-md"
+                    placeholder="Enter Address"
+                    value={this.state.users.fullAddress}
+                    onChange={this.inputHandlerAddress}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <FormControl
+                    type="text"
+                    className="form-control form-control-md"
+                    placeholder="Enter Contact"
+                    value={this.state.users.contactNo}
+                    onChange={this.inputHandlerContact}
+                  /> </FormGroup>
+                <FormGroup>
+                  <FormControl
+                    type="text"
+                    placeholder="Enter Email"
+                    className="form-control form-control-md"
+                    value={this.state.users.emailId}
+                    onChange={this.inputHandlerEmail}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <FormControl
+                    type="text"
+                    className="form-control form-control-md"
+                    placeholder="Enter CompanyDetails"
+                    value={this.state.users.companyName}
+                    onChange={this.inputHandlerCompany}
+                  /> </FormGroup>
+
+                <FormGroup>
+                  <Button> Submit </Button>
+                </FormGroup>
+              </div>
+       
           </form>
+          </Card>
         </div>
         <>
           {cardList}
-          <br />
         </>
       </div>
     );
