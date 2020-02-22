@@ -1,4 +1,3 @@
-
 /*eslint no-unused-expressions: [
   "error", { 
     "allowShortCircuit": true
@@ -7,7 +6,14 @@ import React from "react";
 import uuid from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
-import { FormGroup, FormControl, Fragment, Button, InputGroup, Form } from "react-bootstrap";
+import {
+  FormGroup,
+  FormControl,
+  Fragment,
+  Button,
+  InputGroup,
+  Form
+} from "react-bootstrap";
 class ListItems extends React.Component {
   constructor(props) {
     super(props);
@@ -22,14 +28,14 @@ class ListItems extends React.Component {
           companyName: "HappLabs Software  LLP"
         }
       ],
-      isEdited:false,
-      index:null
+      isEdited: false,
+      index: null
     };
   }
   submitUserForm = e => {
     e.preventDefault();
     //const list = this.state.countries.slice();
-    if(!this.state.index){
+    if (!this.state.index) {
       const user = {
         id: uuid.v4(),
         fullName: this.state.fullName,
@@ -42,27 +48,31 @@ class ListItems extends React.Component {
       this.setState({
         users: [...this.state.users, user]
       });
-    }else{
-       let index = this.state.index;
-       const updateData = this.state.users.map((u)=>{
-         const newObje = {fullName:'',fullAddress:'',emailId:'',contactNo:'',companyName:''};
-         if(u.id === index)
-         {
-           newObje.fullName = this.state.users.fullName,
-           newObje.fullAddress = this.state.users.fullAddress,
-           newObje.emailId = this.state.users.emailId,
-           newObje.contactNo = this.state.users.contactNo,
-           newObje.companyName = this.state.users.companyName
-
-         }
-         return newObje;
-       });
+    } else {
+      let index = this.state.index;
+      const updateData = this.state.users.map(u => {
+        const newObje = {
+          fullName: "",
+          fullAddress: "",
+          emailId: "",
+          contactNo: "",
+          companyName: ""
+        };
+        if (u.id === index) {
+          (newObje.fullName = this.state.users.fullName),
+            (newObje.fullAddress = this.state.users.fullAddress),
+            (newObje.emailId = this.state.users.emailId),
+            (newObje.contactNo = this.state.users.contactNo),
+            (newObje.companyName = this.state.users.companyName);
+        }
+        return newObje;
+      });
       console.log(updateData);
       // this.setState({
       //   users: [...this.state.users, user]
       // });
     }
-   
+
     e.target.reset();
     //e.reset();
   };
@@ -111,15 +121,15 @@ class ListItems extends React.Component {
 
   deleteCard = e => {
     console.log("delete");
-    const newData = this.state.users.filter((i) => i.id !== e.id);
+    const newData = this.state.users.filter(i => i.id !== e.id);
     console.log(newData);
     this.setState({ users: newData });
-  }
+  };
 
-  editCard =(user) =>{
+  editCard = user => {
     //console.log(user);
-     const data = this.state.users.filter((u)=>u.id===user.id);
-     console.log(data);
+    const data = this.state.users.filter(u => u.id === user.id);
+    console.log(data);
     this.refs.fullName.value = data[0].fullName;
     this.refs.fullAddress.value = data[0].fullAddress;
     this.refs.emailId.value = data[0].emailId;
@@ -127,10 +137,10 @@ class ListItems extends React.Component {
     this.refs.companyName.value = data[0].companyName;
     console.log(this.state.isEdited);
     this.setState({
-      isEdited:!this.state.isEdited,
-      index:user.id
+      isEdited: !this.state.isEdited,
+      index: user.id
     });
-  }
+  };
   render() {
     const cardList = this.state.users.map((user, index) => {
       return (
@@ -173,8 +183,8 @@ class ListItems extends React.Component {
       <div className="item">
         <div>
           <h1> User Details Form </h1>
-        <Card style={{ width: "18rem" }}>
-          <Form onSubmit={this.submitUserForm}>
+          <Card style={{ width: "18rem" }}>
+            <Form onSubmit={this.submitUserForm}>
               <div className="form-group">
                 <FormGroup>
                   <FormControl
@@ -204,7 +214,8 @@ class ListItems extends React.Component {
                     placeholder="Enter Contact"
                     value={this.state.users.contactNo}
                     onChange={this.inputHandlerContact}
-                  /> </FormGroup>
+                  />{" "}
+                </FormGroup>
                 <FormGroup>
                   <FormControl
                     type="text"
@@ -223,19 +234,17 @@ class ListItems extends React.Component {
                     placeholder="Enter CompanyDetails"
                     value={this.state.users.companyName}
                     onChange={this.inputHandlerCompany}
-                  /> </FormGroup>
+                  />{" "}
+                </FormGroup>
 
                 <FormGroup>
                   <Button type="submit"> Submit </Button>
                 </FormGroup>
               </div>
-       
-          </Form>
+            </Form>
           </Card>
         </div>
-        <>
-          {cardList}
-        </>
+        <>{cardList}</>
       </div>
     );
   }
