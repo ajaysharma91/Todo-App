@@ -6,6 +6,7 @@ import React from "react";
 import uuid from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
+import "./App.css";
 import {
   FormGroup,
   FormControl,
@@ -140,8 +141,8 @@ class ListItems extends React.Component {
   render() {
     const cardList = this.state.users.map((user, index) => {
       return (
-        <div class="col-sm-6 col-md-4 col-lg-3" style={{ flexWrap: "wrap" }}>
-          <Card bg="info" text="white" style={{ width: "18rem" }}>
+        <div class="col-sm-6 col-md-4 col-lg-3" style={{ 'flexWrap': "wrap",'margin-bottom':'15px' }}>
+          <Card bg="info" text="white">
             <Card.Body>
               <Card.Title>{user.companyName}</Card.Title>
               <Card.Subtitle
@@ -252,7 +253,7 @@ class ListItems extends React.Component {
           </Card>
         </div>
         <>
-          <div class="row" style={{ display: "flex", flexWrap: "wrap" }}>
+          <div class="row" style={{ 'display': "flex", 'flexWrap': "wrap" }}>
             {cardList}
           </div>
         </>
