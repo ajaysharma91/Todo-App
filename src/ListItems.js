@@ -35,42 +35,38 @@ class ListItems extends React.Component {
   submitUserForm = e => {
     e.preventDefault();
     //const list = this.state.countries.slice();
+
     if (!this.state.index) {
+      console.log("adddddddddddd");
       const user = {
         id: uuid.v4(),
-        fullName: this.state.fullName,
-        fullAddress: this.state.fullAddress,
-        contactNo: this.state.contactNo,
-        emailId: this.state.emailId,
-        companyName: this.state.companyName
+        fullName: this.refs.fullName.value,
+        fullAddress: this.refs.fullAddress.value,
+        contactNo: this.refs.contactNo.value,
+        emailId: this.refs.emailId.value,
+        companyName: this.refs.companyName.value
       };
       // console.log(country);
       this.setState({
         users: [...this.state.users, user]
       });
     } else {
+      console.log("edittttt");
+
       let index = this.state.index;
-      const updateData = this.state.users.map(u => {
-        const newObje = {
-          fullName: "",
-          fullAddress: "",
-          emailId: "",
-          contactNo: "",
-          companyName: ""
-        };
-        if (u.id === index) {
-          (newObje.fullName = this.state.users.fullName),
-            (newObje.fullAddress = this.state.users.fullAddress),
-            (newObje.emailId = this.state.users.emailId),
-            (newObje.contactNo = this.state.users.contactNo),
-            (newObje.companyName = this.state.users.companyName);
-        }
-        return newObje;
-      });
+      const usere = {
+        id: index,
+        fullName: this.refs.fullName.value,
+        fullAddress: this.refs.fullAddress.value,
+        contactNo: this.refs.contactNo.value,
+        emailId: this.refs.emailId.value,
+        companyName: this.refs.companyName.value
+      };
+      const updateData = this.state.users.map(u =>
+        u.id === index ? usere : u
+      );
       console.log(updateData);
-      // this.setState({
-      //   users: [...this.state.users, user]
-      // });
+      this.setState({ users: updateData, isEdit: false, index: "" });
     }
 
     e.target.reset();
@@ -135,7 +131,7 @@ class ListItems extends React.Component {
     this.refs.emailId.value = data[0].emailId;
     this.refs.contactNo.value = data[0].contactNo;
     this.refs.companyName.value = data[0].companyName;
-    console.log(this.state.isEdited);
+    //console.log(this.state.isEdited);
     this.setState({
       isEdited: !this.state.isEdited,
       index: user.id
@@ -144,38 +140,49 @@ class ListItems extends React.Component {
   render() {
     const cardList = this.state.users.map((user, index) => {
       return (
-        <Card bg="info" text="white" style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>{user.companyName}</Card.Title>
-            <Card.Subtitle
-              style={{
-                backgroundColor: "green",
-                color: "white"
-              }}
-              className="mb-2 p-3"
-            >
-              {user.fullName}
-            </Card.Subtitle>
-            <ul bg="info" text="white" class="list-group list-group-flush">
-              <li style={{ backgroundColor: "green" }} class="list-group-item">
-                {user.fullAddress}
-              </li>
-              <li style={{ backgroundColor: "green" }} class="list-group-item">
-                {user.contactNo}
-              </li>
-              <li style={{ backgroundColor: "green" }} class="list-group-item">
-                {user.emailId}
-              </li>
-            </ul>
-            {/* <Card.Text>{user.fullAddress}</Card.Text>
+        <div class="col-sm-6 col-md-4 col-lg-3" style={{ flexWrap: "wrap" }}>
+          <Card bg="info" text="white" style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>{user.companyName}</Card.Title>
+              <Card.Subtitle
+                style={{
+                  backgroundColor: "green",
+                  color: "white"
+                }}
+                className="mb-2 p-3"
+              >
+                {user.fullName}
+              </Card.Subtitle>
+              <ul bg="info" text="white" class="list-group list-group-flush">
+                <li
+                  style={{ backgroundColor: "green" }}
+                  class="list-group-item"
+                >
+                  {user.fullAddress}
+                </li>
+                <li
+                  style={{ backgroundColor: "green" }}
+                  class="list-group-item"
+                >
+                  {user.contactNo}
+                </li>
+                <li
+                  style={{ backgroundColor: "green" }}
+                  class="list-group-item"
+                >
+                  {user.emailId}
+                </li>
+              </ul>
+              {/* <Card.Text>{user.fullAddress}</Card.Text>
             <Card.Text>{user.contactNo}</Card.Text>
             <Card.Text>{user.emailId}</Card.Text> */}
-            <Card.Link href="#">Edit</Card.Link>
-            <Card.Link href="#">View Details</Card.Link>
-          </Card.Body>
-          <button onClick={() => this.deleteCard(user)}>Delete</button>
-          <button onClick={() => this.editCard(user)}>Edit</button>
-        </Card>
+              <Card.Link href="#">Edit</Card.Link>
+              <Card.Link href="#">View Details</Card.Link>
+            </Card.Body>
+            <button onClick={() => this.deleteCard(user)}>Delete</button>
+            <button onClick={() => this.editCard(user)}>Edit</button>
+          </Card>
+        </div>
       );
     });
 
@@ -244,7 +251,11 @@ class ListItems extends React.Component {
             </Form>
           </Card>
         </div>
-        <>{cardList}</>
+        <>
+          <div class="row" style={{ display: "flex", flexWrap: "wrap" }}>
+            {cardList}
+          </div>
+        </>
       </div>
     );
   }
