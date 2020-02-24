@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import ListItems from './ListItems';
 import * as serviceWorker from './serviceWorker';
-
-ReactDOM.render(<ListItems />, document.getElementById('root'));
+import Employees from './components/Employees/Employees';
+ReactDOM.render(<Employees />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
