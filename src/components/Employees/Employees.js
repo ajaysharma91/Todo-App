@@ -7,6 +7,7 @@ import uuid from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Employee from './Employee/Employee';
 //import AddEmployee from "./AddEmployee";
+import EForm from './Form';
 import {
   FormGroup,
   FormControl,
@@ -139,11 +140,17 @@ class Employees extends React.Component {
       index: user.id
     });
   };
+  submit = (e)=>{
+    e.preventDefault();
+    
+    alert("hey!! i'm here.."+e.target.placeholder);
+  }
   render() {
     return (
       <div className="item">
         <div>
           <h1> User Details Form </h1>
+          {/* <EForm submit={this.submit} reff = {(input)=>{this.name =input}}/> */}
           {/* <AddEmployee
             users={this.state.users}
             inputHandlerEmail={this.inputHandlerEmail}
